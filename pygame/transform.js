@@ -7,7 +7,7 @@ let $builtinmodule = function (name) {
         if (Sk.abstr.typeName(xbool) !== "bool" || Sk.abstr.typeName(ybool) !== "bool") {
             throw new Sk.builtin.TypeError("Wrong arguments");
         }
-        let t = Sk.builtin.tuple([surf.width, surf.height]);
+        let t = new Sk.builtin.tuple([surf.width, surf.height]);
         let ret = Sk.misceval.callsim(PygameLib.SurfaceType, t);
         ret.context2d.save();
         let xb = Sk.ffi.remapToJs(xbool);
@@ -36,7 +36,7 @@ let $builtinmodule = function (name) {
             }
             return surf;
         }
-        let t = Sk.builtin.tuple([w, h]);
+        let t = new Sk.builtin.tuple([w, h]);
         let xs = w / surf.width;
         let ys = h / surf.height;
         let ret = Sk.misceval.callsim(PygameLib.SurfaceType, t);
@@ -59,7 +59,7 @@ let $builtinmodule = function (name) {
         let a = Sk.ffi.remapToJs(angle);
         let w = surf.width;
         let h = surf.height;
-        let t = Sk.builtin.tuple([1.5 * w, 1.5 * h]);
+        let t = new Sk.builtin.tuple([1.5 * w, 1.5 * h]);
         let ret = Sk.misceval.callsim(PygameLib.SurfaceType, t);
         ret.context2d.save();
         ret.context2d.translate(w / 2, h / 2);
@@ -77,7 +77,7 @@ let $builtinmodule = function (name) {
         let a = Sk.ffi.remapToJs(angle);
         let w = surf.width;
         let h = surf.height;
-        let t = Sk.builtin.tuple([2 * scale * w, 2 * scale * h]);
+        let t = new Sk.builtin.tuple([2 * scale * w, 2 * scale * h]);
         let ret = Sk.misceval.callsim(PygameLib.SurfaceType, t);
         ret.context2d.save();
         ret.context2d.scale(scale, scale);
@@ -96,7 +96,7 @@ let $builtinmodule = function (name) {
         }
         let w = surf.width;
         let h = surf.height;
-        let t = Sk.builtin.tuple([2 * w, 2 * h]);
+        let t = new Sk.builtin.tuple([2 * w, 2 * h]);
         let ret = Sk.misceval.callsim(PygameLib.SurfaceType, t);
         ret.context2d.save();
         ret.context2d.scale(2, 2);
@@ -123,7 +123,7 @@ let $builtinmodule = function (name) {
         let h = surf.height;
         let rw = w - x2;
         let rh = h - y2;
-        let t = Sk.builtin.tuple([w, h]);
+        let t = new Sk.builtin.tuple([w, h]);
         let ret = Sk.misceval.callsim(PygameLib.SurfaceType, t);
         ret.context2d.drawImage(surf.offscreen_canvas, 0, 0, x1, y1, 0, 0, x1, y1);
         ret.context2d.drawImage(surf.offscreen_canvas, 0, y2, x1, rh, 0, y1, x1, rh);

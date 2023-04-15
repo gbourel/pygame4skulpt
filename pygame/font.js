@@ -113,11 +113,11 @@ function fontSize(self, text) {
     var w = 300;
 
     // Create a dummy canvas in order to exploit its measureText() method
-    var t = Sk.builtin.tuple([w, h]);
+    var t = new Sk.builtin.tuple([w, h]);
     var s = Sk.misceval.callsim(PygameLib.SurfaceType, t, false);
     var ctx = s.offscreen_canvas.getContext("2d");
     ctx.font = fontName;
-    return new Sk.builtin.tuple([ctx.measureText(msg).width, h]);
+    return new new Sk.builtin.tuple([ctx.measureText(msg).width, h]);
 }
 
 function renderFont(self, text, antialias, color, background) {
@@ -148,12 +148,12 @@ function renderFont(self, text, antialias, color, background) {
     var w = 300;
 
     // Create a dummy canvas in order to exploit its measureText() method
-    var t = Sk.builtin.tuple([w, h]);
+    var t = new Sk.builtin.tuple([w, h]);
     var s = Sk.misceval.callsim(PygameLib.SurfaceType, t, false);
     var ctx = s.offscreen_canvas.getContext("2d");
     ctx.font = fontName;
     w = ctx.measureText(msg).width;
-    t = Sk.builtin.tuple([w * realFontSize, h * realFontSize * 1.2]);
+    t = new Sk.builtin.tuple([w * realFontSize, h * realFontSize * 1.2]);
     s = Sk.misceval.callsim(PygameLib.SurfaceType, t, false);
     ctx = s.offscreen_canvas.getContext("2d");
     fontName = fontName.replace(/\d+.*px/g, (realFontSize * h).toFixed(2)+"px");
