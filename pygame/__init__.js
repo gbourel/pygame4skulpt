@@ -1196,7 +1196,6 @@ var init$1 = function $__init__123$(self, size, fullscreen = false, main = true)
         window.addEventListener("keydown", keyEventListener);
         window.addEventListener("keyup", keyEventListener);
 
-
         /*if (Sk.ffi.remapToJs(fullscreen)) {
             self.width = window.innerWidth;
             self.height = window.innerHeight;
@@ -1238,7 +1237,7 @@ var init$1 = function $__init__123$(self, size, fullscreen = false, main = true)
 function fillBlack(ctx, w, h, main = false) {
     ctx.beginPath();
     ctx.rect(0, 0, w, h);
-    console.log("main:", main);
+    // console.log("main:", main);
     if (main){
         ctx.fillStyle = "black";
     } else {
@@ -1301,7 +1300,7 @@ function update(self) {
 update.co_name = new Sk.builtin.str('update');
 update.co_varnames = ['self'];
 
-function blit(self, other, pos) {
+function blit(self, other, pos, area) {
     // other, pos;
     let target_pos_js;
     if (Sk.misceval.isTrue(Sk.builtin.isinstance(pos, Sk.builtin.tuple)) ||
@@ -1311,14 +1310,21 @@ function blit(self, other, pos) {
     } else if (Sk.misceval.isTrue(Sk.builtin.isinstance(pos, PygameLib.RectType))) {
         // debugger;
         const tmpName = Sk.builtin.str("topleft");
-        target_pos_js = Sk.ffi.remapToJs(Sk.builtin.getattr(pos, tmpName))
+        target_pos_js = Sk.ffi.remapToJs(Sk.builtin.getattr(pos, tmpName));
     } else {
-        target_pos_js = [0, 0]
+        target_pos_js = [0, 0];
     }
-    self.context2d.drawImage(other.offscreen_canvas, target_pos_js[0], target_pos_js[1]);
+    if (area && area.v) {
+        self.context2d.drawImage(other.offscreen_canvas,
+            area.v[0].v, area.v[1].v,    // sx, sy,
+            area.v[2].v, area.v[3].v,   // sWidth, sHeight,
+            target_pos_js[0], target_pos_js[1], // dx, dy
+            area.v[2].v, area.v[3].v);   // dWidth, dHeight
+    } else {
+        self.context2d.drawImage(other.offscreen_canvas, target_pos_js[0], target_pos_js[1]);
+    }
     return Sk.misceval.callsim(PygameLib.RectType,
         new Sk.builtin.tuple([0, 0]), new Sk.builtin.tuple([other.offscreen_canvas.width, other.offscreen_canvas.height]))
-
 }
 
 function convert(self) {
