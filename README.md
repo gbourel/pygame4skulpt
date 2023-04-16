@@ -1,3 +1,8 @@
+Forked from petlja's initial repository adding:
+
+ * pygame mixer for basic sounds
+ * fixes for newer skulpt version
+
 # Pygame module for Skulpt
 An example of the module can be found on [http://petlja.github.io/pygame4skulpt](http://petlja.github.io/pygame4skulpt).
 ## How to use
@@ -180,7 +185,40 @@ Sk.quitHandler = function () {
     - [x] pygame.key.get_repeat	—	see how held keys are repeated
     - [x] pygame.key.name	—	get the name of a key identifier
 - [ ] locals
-- [ ] mixer
+- [x] mixer
+    - [x] pygame.mixer.init —   initialize the mixer module
+    - [ ] pygame.mixer.pre_init —   preset the mixer init arguments
+    - [ ] pygame.mixer.quit —   uninitialize the mixer
+    - [ ] pygame.mixer.get_init —   test if the mixer is initialized
+    - [ ] pygame.mixer.stop —   stop playback of all sound channels
+    - [ ] pygame.mixer.pause    —   temporarily stop playback of all sound channels
+    - [ ] pygame.mixer.unpause  —   resume paused playback of sound channels
+    - [ ] pygame.mixer.fadeout  —   fade out the volume on all sounds before stopping
+    - [ ] pygame.mixer.set_num_channels —   set the total number of playback channels
+    - [ ] pygame.mixer.get_num_channels —   get the total number of playback channels
+    - [ ] pygame.mixer.set_reserved —   reserve channels from being automatically used
+    - [ ] pygame.mixer.find_channel —   find an unused channel
+    - [ ] pygame.mixer.get_busy —   test if any sound is being mixed
+    - [ ] pygame.mixer.get_sdl_mixer_version    —   get the mixer's SDL version
+    - [ ] pygame.mixer.Channel  —   Create a Channel object for controlling playback
+    - [x] pygame.mixer.Sound    —   Create a new Sound object from a file or buffer object
+    - [x] pygame.mixer.music
+        - [x] pygame.mixer.music.load  —   Load a music file for playback
+        - [ ] pygame.mixer.music.unload  —   Unload the currently loaded music to free up resources
+        - [x] pygame.mixer.music.play  —   Start the playback of the music stream
+        - [ ] pygame.mixer.music.rewind  —   restart music
+        - [ ] pygame.mixer.music.stop  —   stop the music playback
+        - [ ] pygame.mixer.music.pause  —   temporarily stop music playback
+        - [ ] pygame.mixer.music.unpause  —   resume paused music
+        - [ ] pygame.mixer.music.fadeout  —   stop music playback after fading out
+        - [x] pygame.mixer.music.set_volume  —   set the music volume
+        - [x] pygame.mixer.music.get_volume  —   get the music volume
+        - [ ] pygame.mixer.music.get_busy  —   check if the music stream is playing
+        - [ ] pygame.mixer.music.set_pos  —   set position to play from
+        - [ ] pygame.mixer.music.get_pos  —   get the music play time
+        - [ ] pygame.mixer.music.queue  —   queue a sound file to follow the current
+        - [ ] pygame.mixer.music.set_endevent  —   have the music send an event when playback stops
+        - [ ] pygame.mixer.music.get_endevent  —   get the event a channel sends when playback stops
 - [x] mouse
     - [x] pygame.mouse.get_pressed	—	get the state of the mouse buttons
     - [x] pygame.mouse.get_pos	—	get the mouse cursor position

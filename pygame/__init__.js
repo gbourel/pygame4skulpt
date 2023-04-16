@@ -1096,6 +1096,7 @@ function pygame_init() {
     var draw_m = Sk.importModule("pygame.draw", false, false);
     var pygame_m = Sk.importModule("pygame", false, false);
     var time_m = Sk.importModule("pygame.time", false, false);
+    var mixer_m = Sk.importModule("pygame.mixer", false, false);
     var image_m = Sk.importModule("pygame.image", false, false);
     var font_m = Sk.importModule("pygame.font", false, false);
     var key_m = Sk.importModule("pygame.key", false, false);
