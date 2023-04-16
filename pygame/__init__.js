@@ -1048,13 +1048,14 @@ var $builtinmodule = function (name) {
     PygameLib.ColorType = mod.Color;
     mod.Rect = Sk.misceval.buildClass(mod, rect_type_f, 'Rect', []);
     PygameLib.RectType = mod.Rect;
+    PygameLib.quitListeners = [];
     mod.quit = new Sk.builtin.func(function () {
         PygameLib.running = false;
         if (Sk.quitHandler) {
             Sk.quitHandler();
         }
+        PygameLib.quitListeners.forEach(ql => { ql(); });
         Sk.hardInterrupt = true;
-
     });
     mod.error = new Sk.builtin.func(function (description) {
         if (Sk.abstr.typeName(description) !== "str") {
