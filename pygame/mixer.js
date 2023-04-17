@@ -10,7 +10,7 @@ function mixer_Sound(gbl, loc) {
     loc.__init__ = new Sk.builtin.func(function (self, filename) {
         self.audioElt = null;
         if (filename) {
-            self.audioElt = new Audio(filename.v);
+            self.audioElt = new Audio((Sk.audioPath || '') + filename.v);
         }
         return Sk.builtin.none.none$;
     }, gbl);
@@ -69,11 +69,15 @@ var mixer_Music = function $Music$class_outer(gbl, loc) {
     loc.__init__ = new Sk.builtin.func(init$1, gbl);
     loc.__repr__ = new Sk.builtin.func(repr$1, gbl);
     loc.load = new Sk.builtin.func(function (filename) {
+        debug('Mixer load', filename);
         if(filename) {
-            _audios.push(filename.v);
+            let filePath = (Sk.audioPath || '') + filename.v;
+            _audios.push(filePath);
+            _audioElt = new Audio(_audios[0]);
+            debug('Loaded', filename, _audios);
+        } else {
+            console.error('Cannot load empty filename.');
         }
-        _audioElt = new Audio(_audios[0]);
-        debug('Loaded', filename, _audios);
     });
     loc.unload = new Sk.builtin.func(function () {});
     loc.play = new Sk.builtin.func(function (loops, start, fade) {
